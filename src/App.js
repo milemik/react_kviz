@@ -1,24 +1,25 @@
-import logo from './logo.svg';
 import './App.css';
+import AllPLaygrounds from './FetchData/AllPlaygrounds';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import QuestionbyLevel from './FetchData/QuestionsByLevel';
+import Question from './FetchData/Question';
+import Playground from './components/Playground';
+import Nav from './components/Nav';
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div className="App">
+        <Nav />
+        <Switch>
+          <Route path="/" exact component={AllPLaygrounds}/>
+          <Route path="/playground/:id" component={Playground}/>
+          <Route path="/level/:id" component={QuestionbyLevel}/>
+          <Route path="/question/:id" component={Question}/>
+        </Switch>
+      </div>
+    </Router>
   );
 }
 
